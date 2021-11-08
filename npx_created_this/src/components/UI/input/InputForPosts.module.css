@@ -1,0 +1,11 @@
+.inputForPosts{
+    margin: 10px;
+    padding: 5px;
+    background: lavender;
+    border-color: orchid;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    cursor: pointer;
+    width: 100%;
+}
