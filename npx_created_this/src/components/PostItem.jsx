@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonForPosts from "./UI/button/ButtonForPosts";
 
 const PostItem = (props) => {
     return (
@@ -6,7 +7,7 @@ const PostItem = (props) => {
 
             <div className="post__content">
 
-                <strong> {props.post.id}. {props.post.title}</strong>
+                <strong> {props.number}. {props.post.title}</strong>
                 <div>
                     {props.post.body}
                 </div>
@@ -17,7 +18,7 @@ const PostItem = (props) => {
             </div>
             <div className="post__btns">
 
-                <button>Делит</button>
+                <ButtonForPosts onClick={() => props.remove(props.post)}>Делит</ButtonForPosts>
             </div>
 
         </div>

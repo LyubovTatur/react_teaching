@@ -8,6 +8,7 @@ import PostItem from "./components/PostItem";
 import PostList from "./components/PostList";
 import InputForPosts from "./components/UI/input/InputForPosts";
 import ButtonForPosts from "./components/UI/button/ButtonForPosts";
+import PostForm from "./components/PostForm";
 
 function App() {
 
@@ -15,18 +16,14 @@ function App() {
         {id:1, title: 'Мякиш', body:'Ай рили лайк ер мякиш. МякишМякишМякиш'},
         {id:2, title: 'Дейлайт ком', body: 'Энд ми вон го хоммммм'}
     ])
-
-    const [title, setTitle] = useState('')
-    const [body, setBody] = useState('')
-    const addNewPost = (e) =>{
-        e.preventDefault()
-        const newPost = {
-            id: Date.now(),
-            title,
-            body
-        }
+    const createPost = (newPost) => {
         setPosts([...getPosts, newPost])
     }
+
+    const removePost = (post) => {
+        setPosts(getPosts.filter(p =>p.id!==post.id))
+    }
+
 
   return (
     <div className="App">
@@ -34,12 +31,13 @@ function App() {
       <ClassCounter/>
      <TextRepeater/>
 
-        <form>
-            <InputForPosts value={title} onChange={e=>setTitle(e.target.value)} type="text" placeholder="название поста"/>
-            <InputForPosts value={body} onChange={e=>setBody(e.target.value)} type="text" placeholder="описание поста"/>
-            <ButtonForPosts onClick={addNewPost}>Создать пост</ButtonForPosts>
-        </form>
-        <PostList getPosts={getPosts} title={'Вааа спесокк'}/>
+        <PostForm create={createPost}></PostForm>
+        {
+            getPosts.length!==0
+                ?        <PostList remove={removePost} getPosts={getPosts} title={'Вааа спесокк'}/>
+
+                : <h1 style={{textAlign: 'center'}}> посты где то потерялись....</h1>
+        }
 
 
 
